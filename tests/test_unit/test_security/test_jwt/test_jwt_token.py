@@ -267,45 +267,39 @@ def test_verify_nbf_can_be_disabled_independently() -> None:
 
 
 @pytest.mark.parametrize(
-    ('raw_token', 'decode_kwargs'),
+    ('raw_token_data', 'decode_kwargs'),
     [
         (
             {
                 'sub': 'foo',
                 'iat': dt.datetime.now(dt.UTC),
             },
-            {
-                'verify_exp': False,
-            },
+            _DecodeKwargs(verify_exp=False),
         ),
         (
             {
                 'sub': 'foo',
                 'exp': dt.datetime.now(dt.UTC) + dt.timedelta(days=1),
             },
-            {
-                'verify_iat': False,
-            },
+            _DecodeKwargs(verify_iat=False),
         ),
         (
             {
                 'exp': dt.datetime.now(dt.UTC) + dt.timedelta(days=1),
                 'iat': dt.datetime.now(dt.UTC),
             },
-            {
-                'verify_sub': False,
-            },
+            _DecodeKwargs(verify_sub=False),
         ),
     ],
 )
 def test_missing_required_claims_raise_auth_error(
     *,
-    raw_token: dict[str, Any],
+    raw_token_data: dict[str, Any],
     decode_kwargs: _DecodeKwargs,
 ) -> None:
     """Ensure missing required claims still fail as auth errors."""
     secret = secrets.token_hex()
-    encoded = jwt.encode(raw_token, key=secret, algorithm='HS256')
+    encoded = jwt.encode(raw_token_data, key=secret, algorithm='HS256')
 
     with pytest.raises(NotAuthenticatedError):
         JWToken.decode(
