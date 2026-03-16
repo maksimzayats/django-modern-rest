@@ -145,6 +145,7 @@ def test_global_settings_override(
 @pytest.mark.parametrize('typ', [DjangoSessionSyncAuth, DjangoSessionAsyncAuth])
 def test_schema_with_csrf_cookie(
     settings: LazySettings,
+    *,
     typ: type[DjangoSessionSyncAuth] | type[DjangoSessionAsyncAuth],
 ) -> None:
     """Ensures that security scheme is correct for django session auth."""

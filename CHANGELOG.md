@@ -5,11 +5,19 @@ We follow [Semantic Versions](https://semver.org/).
 
 ## WIP
 
+### Features
+
+- Added ``FileResponseSpec`` and improved ``FileResponse``
+  schema generation, #682
+- Added ``encoding:`` support for file media types in ``FileMetadata``, #682
+
 ### Bugfixes
 
 - Fixed OpenAPI schema for custom HTTP Basic auth headers, #672
 - Fixed OpenAPI schema for Django session auth
   when `CSRF_USE_SESSIONS=True`, #674
+- Fixed JWT claim validation and error handling in `JWToken.decode`, #675
+- Fixed incorrect OpenAPI schema for ``FileResponse``, #682
 
 
 ## Version 0.2.0 (2026-03-15)

@@ -207,22 +207,3 @@ Msgspec
 
 .. autoclass:: dmr.plugins.msgspec.schema.MsgspecSchemaGenerator
   :members:
-
-
-Files
------
-
-.. autoclass:: dmr.files.FileBody
-  :members:
-
-
-Auth
-----
-
-.. autoclass:: dmr.security.SyncAuth
-  :members:
-  :inherited-members:
-
-.. autoclass:: dmr.security.AsyncAuth
-  :members:
-  :inherited-members:
