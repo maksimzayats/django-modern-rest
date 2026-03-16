@@ -175,6 +175,7 @@ def test_schema_with_csrf_cookie(
 @pytest.mark.parametrize('typ', [DjangoSessionSyncAuth, DjangoSessionAsyncAuth])
 def test_schema_with_csrf_sessions(
     settings: LazySettings,
+    *,
     typ: type[DjangoSessionSyncAuth] | type[DjangoSessionAsyncAuth],
 ) -> None:
     """Ensures that CSRF cookie schema is omitted for session-backed CSRF."""
